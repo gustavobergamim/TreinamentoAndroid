@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Trainning</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="img_description_icone">Icon</string>
+    <string name="btn_exemplo">Sample</string>
+    <string name="hint_txt_valor">Enter value</string>
+    <string name="toast_voce_digitou">You have entered: %s</string>
+
+</resources>
