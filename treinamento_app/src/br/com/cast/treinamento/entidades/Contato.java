@@ -64,4 +64,9 @@ public class Contato implements IEntidade {
 		}
 		return super.equals(o);
 	}
+	
+	@Override
+	public String toString() {
+		return getNome();
+	}
 }

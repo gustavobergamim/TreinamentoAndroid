@@ -61,6 +61,7 @@ public class ContatoActivity extends BaseActivity {
 			public void onClick(View view) {
 				Contato contato = recuperarContato();
 				service.salvar(contato);
+				ContatoActivity.this.finish();
 			}
 
 		});
