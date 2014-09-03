@@ -1,6 +1,6 @@
 package br.com.cast.treinamento.dao;
 
-import br.com.cast.treinamento.entidades.Contato;
+import br.com.cast.treinamento.domain.Contato;
 
 public class ContatoDAO extends BaseMemoryDAO<Contato> {
 

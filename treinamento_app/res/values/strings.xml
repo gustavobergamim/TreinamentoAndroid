@@ -16,5 +16,9 @@
     <string name="hint_txt_site">Site</string>
     <string name="hint_txt_telefone">Phone</string>
     <string name="btn_salvar">Save</string>
+    <string name="campo_obrigatorio">Required.</string>
+    <string name="valor_invalido">Invalid value.</string>
+    <string name="action_editar">Edit</string>
+    <string name="action_excluir">Delete</string>
 
 </resources>

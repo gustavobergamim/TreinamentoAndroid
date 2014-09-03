@@ -3,7 +3,7 @@ package br.com.cast.treinamento.service;
 import java.util.List;
 
 import br.com.cast.treinamento.dao.BaseMemoryDAO;
-import br.com.cast.treinamento.entidades.IEntidade;
+import br.com.cast.treinamento.domain.IEntidade;
 
 public class BaseService<T extends IEntidade> {
 

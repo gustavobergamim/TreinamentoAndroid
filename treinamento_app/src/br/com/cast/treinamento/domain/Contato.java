@@ -1,6 +1,10 @@
-package br.com.cast.treinamento.entidades;
+package br.com.cast.treinamento.domain;
 
-public class Contato implements IEntidade {
+import java.io.Serializable;
+
+public class Contato implements IEntidade, Serializable {
+
+	private static final long serialVersionUID = 1478888211661368723L;
 
 	private Long id;
 	private String nome;
@@ -64,7 +68,7 @@ public class Contato implements IEntidade {
 		}
 		return super.equals(o);
 	}
-	
+
 	@Override
 	public String toString() {
 		return getNome();

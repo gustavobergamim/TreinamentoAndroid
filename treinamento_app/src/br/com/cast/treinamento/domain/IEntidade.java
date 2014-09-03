@@ -1,4 +1,4 @@
-package br.com.cast.treinamento.entidades;
+package br.com.cast.treinamento.domain;
 
 public interface IEntidade {
 	Long getId();

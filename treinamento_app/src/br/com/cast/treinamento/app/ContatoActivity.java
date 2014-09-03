@@ -1,7 +1,7 @@
 package br.com.cast.treinamento.app;
 
-import br.com.cast.treinamento.entidades.Contato;
-import br.com.cast.treinamento.service.ContatoService;
+import java.util.Map.Entry;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,13 +10,30 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import br.com.cast.treinamento.domain.Contato;
+import br.com.cast.treinamento.domain.exception.ExcecaoNegocio;
+import br.com.cast.treinamento.service.ContatoService;
 
 public class ContatoActivity extends BaseActivity {
+
+	public static final String CONTATO_EDICAO = "CONTATO_EDICAO";
 
 	private EditText txtNome, txtEndereco, txtSite, txtTelefone;
 	private RatingBar barAvaliacao;
 	private Button btnSalvar;
 	private ContatoService service;
+	private Contato contato;
+
+	public Contato getContato() {
+		if (contato == null) {
+			contato = new Contato();
+		}
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
 
 	public ContatoActivity() {
 		service = new ContatoService();
@@ -28,6 +45,7 @@ public class ContatoActivity extends BaseActivity {
 		setContentView(R.layout.activity_contato);
 		recuperarControles();
 		configurarSalvar();
+		carregarContatoEdicao();
 	}
 
 	@Override
@@ -59,21 +77,53 @@ public class ContatoActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View view) {
-				Contato contato = recuperarContato();
-				service.salvar(contato);
-				ContatoActivity.this.finish();
+				ContatoActivity.this.salvar();
 			}
 
 		});
 	}
 
+	private void carregarContatoEdicao() {
+		Contato contato = (Contato) getIntent().getSerializableExtra(CONTATO_EDICAO);
+		setContato(contato);
+		if (contato != null) {
+			preencherCamposEdicao();
+		}
+	}
+
+	private void preencherCamposEdicao() {
+		Contato contato = getContato();
+		txtNome.setText(contato.getNome());
+		txtEndereco.setText(contato.getEndereco());
+		txtSite.setText(contato.getSite());
+		txtTelefone.setText(contato.getTelefone());
+		if (contato.getAvaliacao() != null) {
+			barAvaliacao.setRating(contato.getAvaliacao());
+		}
+	}
+
 	private Contato recuperarContato() {
-		Contato contato = new Contato();
+		Contato contato = getContato();
 		contato.setNome(txtNome.getText().toString());
 		contato.setEndereco(txtEndereco.getText().toString());
 		contato.setSite(txtSite.getText().toString());
 		contato.setTelefone(txtTelefone.getText().toString());
 		contato.setAvaliacao(barAvaliacao.getRating());
 		return contato;
+	}
+
+	private void salvar() {
+		Contato contato = recuperarContato();
+		try {
+			service.salvar(contato);
+			finish();
+		} catch (ExcecaoNegocio ex) {
+			for (Entry<Integer, Integer> erro : ex.getErros().entrySet()) {
+				View campo = recuperarControle(erro.getKey());
+				if (campo instanceof EditText) {
+					((EditText) campo).setError(getString(erro.getValue()));
+				}
+			}
+		}
 	}
 }
