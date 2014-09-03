@@ -20,5 +20,8 @@
     <string name="valor_invalido">Invalid value.</string>
     <string name="action_editar">Edit</string>
     <string name="action_excluir">Delete</string>
+    <string name="confirm_sim">Yes</string>
+    <string name="confirm_nao">No</string>
+    <string name="confirm_msg_delete">Confirms the exclusion?</string>
 
 </resources>

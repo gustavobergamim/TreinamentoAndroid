@@ -3,7 +3,7 @@ package br.com.cast.treinamento.app;
 import android.os.Bundle;
 import android.util.Log;
 
-public abstract class LifeCycleActivity extends BaseActivity {
+public abstract class LifeCycleLoggerActivity extends BaseActivity {
 
 	private static final String TAG = "LIFECYCLE";
 

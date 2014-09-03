@@ -2,6 +2,9 @@ package br.com.cast.treinamento.app;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -79,11 +82,30 @@ public class ListaContatosActivity extends BaseActivity implements IListaContato
 				startActivity(intent);
 				break;
 			case R.id.action_excluir:
-				service.excluir(contatoSelecionado);
-				carregarListView();
+				criarConfirmacaoExclusao();
 				break;
 		}
 		return super.onContextItemSelected(item);
+	}
+
+	private void criarConfirmacaoExclusao() {
+		new AlertDialog.Builder(this).setMessage(R.string.confirm_msg_delete)
+		.setPositiveButton(R.string.confirm_sim, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				service.excluir(contatoSelecionado);
+				carregarListView();
+			}
+
+		}).setNegativeButton(R.string.confirm_nao, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+			}
+
+		}).show();
 	}
 
 	private Intent carregarTelaNovo() {
