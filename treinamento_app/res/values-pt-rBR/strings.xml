@@ -23,5 +23,6 @@
     <string name="confirm_sim">Sim</string>
     <string name="confirm_nao">Não</string>
     <string name="confirm_msg_delete">Deseja excluir?</string>
+    <string name="confirm_title">Confirmação</string>
 
 </resources>

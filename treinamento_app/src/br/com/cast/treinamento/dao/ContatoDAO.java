@@ -4,24 +4,29 @@ import br.com.cast.treinamento.domain.Contato;
 
 public class ContatoDAO extends BaseMemoryDAO<Contato> {
 
-	private static ContatoDAO INSTANCIA;
+    private static ContatoDAO INSTANCIA;
 
-	static {
-		INSTANCIA = new ContatoDAO();		
-		Contato contato = new Contato();
-		contato.setNome("Teste");
-		contato.setEndereco("Teste");
-		contato.setSite("www.teste.com");
-		contato.setTelefone("111111");
-		contato.setAvaliacao(2.5F);
-		INSTANCIA.inserir(contato);
-	}
+    static {
+        INSTANCIA = new ContatoDAO();
 
-	public static ContatoDAO getINSTANCIA() {
-		return INSTANCIA;
-	}
+        for (int indice = 1; indice <= 10; indice++) {
 
-	private ContatoDAO() {
+            Contato contato = new Contato();
+            contato.setNome("Teste " + indice);
+            contato.setEndereco("Teste " + indice);
+            contato.setSite("www.teste.com");
+            contato.setTelefone("111111");
+            contato.setAvaliacao(2.5F);
+            INSTANCIA.inserir(contato);
 
-	}
+        }
+    }
+
+    public static ContatoDAO getINSTANCIA() {
+        return INSTANCIA;
+    }
+
+    private ContatoDAO() {
+
+    }
 }
