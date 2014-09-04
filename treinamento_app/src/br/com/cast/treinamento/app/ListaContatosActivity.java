@@ -79,7 +79,7 @@ public class ListaContatosActivity extends BaseActivity {
     private void configurarListView() {
         listViewContatos = recuperarControle(R.id.listViewContatos);
         listViewManager = new ContatosListViewManager(this, listViewContatos,
-                new ContatoService());
+                new ContatoService(this));
         registerForContextMenu(listViewContatos);
         listViewContatos
                 .setOnItemLongClickListener(new ContatoLongItemClickListener(

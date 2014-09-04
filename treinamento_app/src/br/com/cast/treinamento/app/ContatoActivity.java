@@ -36,7 +36,7 @@ public class ContatoActivity extends BaseActivity {
 	}
 
 	public ContatoActivity() {
-		service = new ContatoService();
+		service = new ContatoService(this);
 	}
 
 	@Override

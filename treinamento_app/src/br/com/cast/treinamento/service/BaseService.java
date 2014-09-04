@@ -2,14 +2,14 @@ package br.com.cast.treinamento.service;
 
 import java.util.List;
 
-import br.com.cast.treinamento.dao.BaseMemoryDAO;
+import br.com.cast.treinamento.dao.IDao;
 import br.com.cast.treinamento.domain.IEntidade;
 
 public class BaseService<T extends IEntidade> {
 
-	private BaseMemoryDAO<T> dao;
+	private IDao<T> dao;
 
-	public BaseService(BaseMemoryDAO<T> dao) {
+	public BaseService(IDao<T> dao) {
 		this.dao = dao;
 	}
 

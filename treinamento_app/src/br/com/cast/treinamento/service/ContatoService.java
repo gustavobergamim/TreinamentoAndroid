@@ -1,5 +1,6 @@
 package br.com.cast.treinamento.service;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Patterns;
 import br.com.cast.treinamento.app.R;
@@ -9,8 +10,8 @@ import br.com.cast.treinamento.domain.exception.ExcecaoNegocio;
 
 public class ContatoService extends BaseService<Contato> {
 
-	public ContatoService() {
-		super(ContatoDAO.getINSTANCIA());
+	public ContatoService(Context context) {
+		super(new ContatoDAO(context));
 	}
 
 	@Override
