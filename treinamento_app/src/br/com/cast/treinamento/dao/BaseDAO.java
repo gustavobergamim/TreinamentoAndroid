@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public abstract class BaseDAO extends SQLiteOpenHelper {
 
+    public static final String TAG_ERROR = "DAO";
+    
     public static final String DB_NAME = "treinamento_android";
     public static final int DB_VERSION = 1;
 
