@@ -8,8 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import br.com.cast.treinamento.app.listeners.ContatoItemClickListener;
-import br.com.cast.treinamento.app.listeners.ContatoLongItemClickListener;
+import br.com.cast.treinamento.app.listeners.ContatoClickListener;
 import br.com.cast.treinamento.app.listeners.ExcluirContatoListener;
 import br.com.cast.treinamento.app.util.ContatosListViewManager;
 import br.com.cast.treinamento.service.ContatoService;
@@ -95,10 +94,9 @@ public class ListaContatosActivity extends BaseActivity {
                 this));
         registerForContextMenu(listViewContatos);
 
-        listViewContatos.setOnItemClickListener(new ContatoItemClickListener(listViewManager));
-
-        listViewContatos.setOnItemLongClickListener(new ContatoLongItemClickListener(
-                listViewManager));
+        ContatoClickListener listener = new ContatoClickListener(listViewManager);
+        listViewContatos.setOnItemClickListener(listener);
+        listViewContatos.setOnItemLongClickListener(listener);
     }
 
 }
