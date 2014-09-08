@@ -18,14 +18,17 @@ public class ContatoClickListener implements OnItemClickListener, OnItemLongClic
     
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int posicao, long id) {
-        Contato contato = (Contato) adapter.getItemAtPosition(posicao);
-        listViewManager.setContato(contato);
-    }  
+        selecionarContato(adapter, posicao);
+    }
     
     @Override
     public boolean onItemLongClick(AdapterView<?> adapter, View view, int posicao, long id) {
+        selecionarContato(adapter, posicao);
+        return false;
+    }
+    
+    private void selecionarContato(AdapterView<?> adapter, int posicao) {
         Contato contato = (Contato) adapter.getItemAtPosition(posicao);
         listViewManager.setContato(contato);
-        return false;
     }
 }

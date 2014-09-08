@@ -56,7 +56,7 @@ public class ContatoActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lista_contatos, menu);
+        getMenuInflater().inflate(R.menu.context_contatos, menu);
         return true;
     }
 

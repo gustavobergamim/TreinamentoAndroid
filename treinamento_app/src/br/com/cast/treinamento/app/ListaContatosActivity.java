@@ -34,16 +34,16 @@ public class ListaContatosActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lista_contatos, menu);
+        getMenuInflater().inflate(R.menu.context_contatos, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (listViewManager.isContatoSelecionado()) {
-            menu.findItem(R.id.action_editar).setVisible(true);
-            menu.findItem(R.id.action_excluir).setVisible(true);
-        }
+        menu.findItem(R.id.action_novo).setVisible(true);
+        boolean exibirOpcoesManter = listViewManager.isContatoSelecionado();
+        menu.findItem(R.id.action_editar).setVisible(exibirOpcoesManter);
+        menu.findItem(R.id.action_excluir).setVisible(exibirOpcoesManter);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -55,7 +55,7 @@ public class ListaContatosActivity extends BaseActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        getMenuInflater().inflate(R.menu.lista_contatos_context, menu);
+        getMenuInflater().inflate(R.menu.context_contatos, menu);
         super.onCreateContextMenu(menu, view, menuInfo);
     }
 
