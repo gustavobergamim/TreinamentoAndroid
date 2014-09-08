@@ -68,9 +68,4 @@ public class Contato implements IEntidade, Serializable {
 		}
 		return super.equals(o);
 	}
-
-	@Override
-	public String toString() {
-		return getNome();
-	}
 }
