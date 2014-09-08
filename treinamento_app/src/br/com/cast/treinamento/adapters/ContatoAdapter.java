@@ -57,11 +57,11 @@ public class ContatoAdapter extends CustomBaseAdapter {
                 R.layout.item_list_view_contato, null);
         preencherItem(layoutItem, position);
 
-        if (position % 2 == 0) {
-            int cor = contexto.getResources().getColor(
-                    android.R.color.secondary_text_dark);
-            layoutItem.setBackgroundColor(cor);
-        }
+//        if (position % 2 == 0) {
+//            int cor = contexto.getResources().getColor(
+//                    android.R.color.secondary_text_dark);
+//            layoutItem.setBackgroundColor(cor);
+//        }
 
         return layoutItem;
     }

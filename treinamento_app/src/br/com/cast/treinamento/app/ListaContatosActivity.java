@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import br.com.cast.treinamento.app.listeners.ContatoItemClickListener;
 import br.com.cast.treinamento.app.listeners.ContatoLongItemClickListener;
 import br.com.cast.treinamento.app.listeners.ExcluirContatoListener;
 import br.com.cast.treinamento.app.util.ContatosListViewManager;
@@ -39,25 +40,37 @@ public class ListaContatosActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_novo:
-                listViewManager.navegarTelaEdicao();
-                break;
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (listViewManager.isContatoSelecionado()) {
+            menu.findItem(R.id.action_editar).setVisible(true);
+            menu.findItem(R.id.action_excluir).setVisible(true);
         }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        definirAcao(item);
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View view,
-            ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.lista_contatos_context, menu);
         super.onCreateContextMenu(menu, view, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        definirAcao(item);
+        return super.onContextItemSelected(item);
+    }
+
+    private void definirAcao(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_novo:
+                listViewManager.navegarTelaEdicao();
+                break;
             case R.id.action_editar:
                 listViewManager.editar();
                 break;
@@ -65,7 +78,6 @@ public class ListaContatosActivity extends BaseActivity {
                 criarConfirmacaoExclusao();
                 break;
         }
-        return super.onContextItemSelected(item);
     }
 
     private void criarConfirmacaoExclusao() {
@@ -79,12 +91,14 @@ public class ListaContatosActivity extends BaseActivity {
 
     private void configurarListView() {
         listViewContatos = recuperarControle(R.id.listViewContatos);
-        listViewManager = new ContatosListViewManager(this, listViewContatos,
-                new ContatoService(this));
+        listViewManager = new ContatosListViewManager(this, listViewContatos, new ContatoService(
+                this));
         registerForContextMenu(listViewContatos);
-        listViewContatos
-                .setOnItemLongClickListener(new ContatoLongItemClickListener(
-                        listViewManager));
+
+        listViewContatos.setOnItemClickListener(new ContatoItemClickListener(listViewManager));
+
+        listViewContatos.setOnItemLongClickListener(new ContatoLongItemClickListener(
+                listViewManager));
     }
 
 }

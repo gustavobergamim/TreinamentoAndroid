@@ -32,6 +32,10 @@ public class ContatosListViewManager {
     public Contato getContato() {
         return contato;
     }
+    
+    public boolean isContatoSelecionado(){
+        return contato != null;
+    }
 
     public void carregarListView() {
         listViewContatos.setAdapter(criarAdapter());
