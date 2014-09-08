@@ -23,6 +23,7 @@ public class ListaContatosActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_contatos);
         configurarListView();
+        getSupportActionBar().setSubtitle(R.string.view_title_listar_contato);
     }
 
     @Override

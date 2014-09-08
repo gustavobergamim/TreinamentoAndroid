@@ -24,5 +24,8 @@
     <string name="confirm_nao">No</string>
     <string name="confirm_msg_delete">Confirms the exclusion?</string>
     <string name="confirm_title">Confirm</string>
+    <string name="view_title_incluir_contato">Add Contact</string>
+    <string name="view_title_editar_contato">Edit Contact</string>
+    <string name="view_title_listar_contato">List Contact</string>
 
 </resources>
