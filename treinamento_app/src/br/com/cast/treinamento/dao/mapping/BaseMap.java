@@ -67,11 +67,17 @@ public abstract class BaseMap<T extends IEntidade> implements ITableDef {
         return command;
     }
 
-    private String configureSorting() {
+    public String configureSorting() {
+        return configureSorting(true);
+    }
+
+    public String configureSorting(boolean addPrefix) {
         String orderBy = "";
         HashMap<String, SortDir> sorting = getSorting();
         if (sorting != null && sorting.size() > 0) {
-            orderBy += " ORDER BY ";
+            if (addPrefix) {
+                orderBy += " ORDER BY ";
+            }
             int index = 0;
             for (Entry<String, SortDir> order : sorting.entrySet()) {
                 orderBy += String.format("UPPER(%s) %s", order.getKey(), order.getValue());

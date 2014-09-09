@@ -11,17 +11,22 @@ import android.widget.ListView;
 import br.com.cast.treinamento.app.listeners.ContatoClickListener;
 import br.com.cast.treinamento.app.listeners.ExcluirContatoListener;
 import br.com.cast.treinamento.app.util.ContatosListViewManager;
+import br.com.cast.treinamento.domain.Contato;
 import br.com.cast.treinamento.service.ContatoService;
 
 public class ListaContatosActivity extends BaseActivity {
 
+    public static final String CONTATO_FILTRO = "CONTATO_FILTRO";
+    
     private ListView listViewContatos;
     private ContatosListViewManager listViewManager;
+    private Contato filtro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_contatos);
+        filtro = (Contato) getIntent().getSerializableExtra(CONTATO_FILTRO);
         configurarListView();
         getSupportActionBar().setSubtitle(R.string.view_title_listar_contato);
     }
@@ -42,8 +47,7 @@ public class ListaContatosActivity extends BaseActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.action_novo).setVisible(true);
         boolean exibirOpcoesManter = listViewManager.isContatoSelecionado();
-        menu.findItem(R.id.action_editar).setVisible(exibirOpcoesManter);
-        menu.findItem(R.id.action_excluir).setVisible(exibirOpcoesManter);
+        menu.setGroupVisible(R.id.group_manter, exibirOpcoesManter);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -90,8 +94,8 @@ public class ListaContatosActivity extends BaseActivity {
 
     private void configurarListView() {
         listViewContatos = recuperarControle(R.id.listViewContatos);
-        listViewManager = new ContatosListViewManager(this, listViewContatos, new ContatoService(
-                this));
+        listViewManager = new ContatosListViewManager(
+                this, listViewContatos, new ContatoService(this), filtro);
         registerForContextMenu(listViewContatos);
 
         ContatoClickListener listener = new ContatoClickListener(listViewManager);

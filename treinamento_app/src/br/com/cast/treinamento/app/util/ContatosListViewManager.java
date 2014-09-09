@@ -17,12 +17,15 @@ public class ContatosListViewManager {
     private final ContatoService service;
 
     private Contato contato;
+    private Contato filtro;
 
     public ContatosListViewManager(Activity contexto,
-            ListView listViewContatos, ContatoService service) {
+            ListView listViewContatos, ContatoService service,
+            Contato filtro) {
         this.contexto = contexto;
         this.listViewContatos = listViewContatos;
         this.service = service;
+        this.filtro = filtro;
     }
 
     public void setContato(Contato contato) {
@@ -46,7 +49,7 @@ public class ContatosListViewManager {
     }
 
     private List<Contato> carregarContatos() {
-        return service.listar();
+        return service.pesquisar(filtro);
     }
 
     public void editar() {

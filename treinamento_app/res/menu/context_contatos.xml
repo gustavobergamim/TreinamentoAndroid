@@ -8,13 +8,16 @@
         android:title="@string/action_novo"
         android:visible="false"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_editar"
-        android:title="@string/action_editar"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_excluir"
-        android:title="@string/action_excluir"
-        app:showAsAction="never"/>
+    
+    <group android:id="@+id/group_manter">
+	    <item
+	        android:id="@+id/action_editar"
+	        android:title="@string/action_editar"
+	        app:showAsAction="never"/>
+	    <item
+	        android:id="@+id/action_excluir"
+	        android:title="@string/action_excluir"
+	        app:showAsAction="never"/>
+    </group>
 
 </menu>

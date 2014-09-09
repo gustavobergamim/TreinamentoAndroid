@@ -7,7 +7,7 @@ import br.com.cast.treinamento.domain.IEntidade;
 
 public class BaseService<T extends IEntidade> {
 
-	private IDao<T> dao;
+	protected IDao<T> dao;
 
 	public BaseService(IDao<T> dao) {
 		this.dao = dao;
