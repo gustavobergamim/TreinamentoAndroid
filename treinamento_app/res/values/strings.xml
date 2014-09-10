@@ -35,5 +35,10 @@
     <string name="btn_pesquisar">Search</string>    
     
     <string name="toast_contato_empty">No contact found.</string>
+    <string name="action_ligar">Call&#8230;</string>
+    <string name="action_sms">Send SMS&#8230;</string>
+    <string name="action_site">Go to site&#8230;</string>
+    <string name="sms_prefix">Dear %s,</string>
+    <string name="img_foto_desc">Contact Photo</string>
 
 </resources>

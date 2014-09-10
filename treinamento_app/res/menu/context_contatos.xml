@@ -19,5 +19,20 @@
 	        android:title="@string/action_excluir"
 	        app:showAsAction="never"/>
     </group>
+    
+    <group android:id="@+id/group_acoes">
+        <item
+            android:id="@+id/action_ligar"
+            android:title="@string/action_ligar"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/action_sms"
+            android:title="@string/action_sms"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/action_site"
+            android:title="@string/action_site"
+            app:showAsAction="never"/>
+    </group>
 
 </menu>

@@ -1,6 +1,8 @@
 package br.com.cast.treinamento.app;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -46,8 +48,9 @@ public class ListaContatosActivity extends BaseActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.action_novo).setVisible(true);
-        boolean exibirOpcoesManter = listViewManager.isContatoSelecionado();
-        menu.setGroupVisible(R.id.group_manter, exibirOpcoesManter);
+        boolean isContatoSelecionado = listViewManager.isContatoSelecionado();
+        menu.setGroupVisible(R.id.group_manter, isContatoSelecionado);
+        menu.setGroupVisible(R.id.group_acoes, isContatoSelecionado);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -70,6 +73,7 @@ public class ListaContatosActivity extends BaseActivity {
     }
 
     private void definirAcao(MenuItem item) {
+        String nome, telefone, site;
         switch (item.getItemId()) {
             case R.id.action_novo:
                 listViewManager.navegarTelaEdicao();
@@ -79,6 +83,21 @@ public class ListaContatosActivity extends BaseActivity {
                 break;
             case R.id.action_excluir:
                 criarConfirmacaoExclusao();
+                break;
+            case R.id.action_ligar:
+                telefone = listViewManager.getContato().getTelefone();
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", telefone, null)));
+                break;
+            case R.id.action_sms:
+                nome = listViewManager.getContato().getNome();
+                telefone = listViewManager.getContato().getTelefone();
+                Intent intentSms = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", telefone, null));
+                intentSms.putExtra("sms_body", String.format(getString(R.string.sms_prefix), nome));
+                startActivity(intentSms);  
+                break;
+            case R.id.action_site:
+                site = listViewManager.getContato().getSite();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + site))); 
                 break;
         }
     }

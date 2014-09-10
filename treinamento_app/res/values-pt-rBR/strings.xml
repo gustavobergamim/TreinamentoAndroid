@@ -35,5 +35,10 @@
     <string name="btn_pesquisar">Pesquisar</string>
     
     <string name="toast_contato_empty">Nenhum contato encontrado.</string>
+    <string name="action_ligar">Ligar&#8230;</string>
+    <string name="action_sms">Enviar SMS&#8230;</string>
+    <string name="action_site">Navegar ao site&#8230;</string>
+    <string name="sms_prefix">Caro %s,</string>
+    <string name="img_foto_desc">Foto do Contato</string>
 
 </resources>

@@ -26,7 +26,7 @@ public abstract class BaseDAO<T extends IEntidade> extends SQLiteOpenHelper impl
     public static final String TAG_ERROR = "DAO";
 
     public static final String DB_NAME = "treinamento_android";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
 
     public static final String FILE_CREATE = "creates.sql";
     public static final String FILE_DROP = "drops.sql";

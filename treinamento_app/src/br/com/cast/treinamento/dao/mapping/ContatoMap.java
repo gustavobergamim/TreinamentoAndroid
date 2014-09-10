@@ -17,6 +17,7 @@ public class ContatoMap extends BaseMap<Contato> {
     public static final String COLUMN_SITE = "site";
     public static final String COLUMN_TELEFONE = "telefone";
     public static final String COLUMN_AVALIACAO = "avaliacao";
+    public static final String COLUMN_FOTO = "foto";
 
     @Override
     public String getTableName() {
@@ -26,7 +27,7 @@ public class ContatoMap extends BaseMap<Contato> {
     @Override
     public String[] getColumns() {
         return new String[] { COLUMN_ID, COLUMN_NOME, COLUMN_ENDERECO, COLUMN_SITE,
-                COLUMN_TELEFONE, COLUMN_AVALIACAO };
+                COLUMN_TELEFONE, COLUMN_AVALIACAO, COLUMN_FOTO };
     }
 
     @Override
@@ -42,6 +43,7 @@ public class ContatoMap extends BaseMap<Contato> {
         getColumnDefs().add(new ColumnDef(COLUMN_SITE, DbType.TEXT, false));
         getColumnDefs().add(new ColumnDef(COLUMN_TELEFONE, DbType.TEXT, false));
         getColumnDefs().add(new ColumnDef(COLUMN_AVALIACAO, DbType.REAL));
+        getColumnDefs().add(new ColumnDef(COLUMN_FOTO, DbType.TEXT));
     }
 
     @Override
@@ -54,6 +56,9 @@ public class ContatoMap extends BaseMap<Contato> {
         contato.setTelefone(cursor.getString(cursor.getColumnIndex(COLUMN_TELEFONE)));
         if (!cursor.isNull(cursor.getColumnIndex(COLUMN_AVALIACAO))) {
             contato.setAvaliacao(cursor.getFloat(cursor.getColumnIndex(COLUMN_AVALIACAO)));
+        }
+        if (!cursor.isNull(cursor.getColumnIndex(COLUMN_FOTO))) {
+            contato.setFoto(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
         }
         return contato;
     }
@@ -69,6 +74,11 @@ public class ContatoMap extends BaseMap<Contato> {
             values.putNull(COLUMN_AVALIACAO);
         } else {
             values.put(COLUMN_AVALIACAO, entity.getAvaliacao());
+        }
+        if (entity.getFoto() == null || entity.getFoto().length() == 0) {
+            values.putNull(COLUMN_FOTO);
+        } else {
+            values.put(COLUMN_FOTO, entity.getFoto());
         }
         return values;
     }

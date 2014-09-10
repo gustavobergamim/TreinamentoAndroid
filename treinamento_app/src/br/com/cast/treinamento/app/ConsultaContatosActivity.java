@@ -36,11 +36,12 @@ public class ConsultaContatosActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.context_contatos, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.action_novo).setVisible(true);
         menu.setGroupVisible(R.id.group_manter, false);
+        menu.setGroupVisible(R.id.group_acoes, false);
         return super.onPrepareOptionsMenu(menu);
     }
 

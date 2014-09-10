@@ -5,13 +5,23 @@
     android:orientation="vertical"
     tools:context="br.com.cast.treinamento.app.ContatoActivity" >
 
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:contentDescription="@string/img_foto_desc"
+        android:src="@android:drawable/gallery_thumb" />
+
     <EditText
         android:id="@+id/txtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/hint_txt_nome" >
+        android:hint="@string/hint_txt_nome"
+        android:inputType="textPersonName" >
+
         <requestFocus />
     </EditText>
 
@@ -20,24 +30,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPostalAddress"
-        android:hint="@string/hint_txt_endereco" />
+        android:hint="@string/hint_txt_endereco"
+        android:inputType="textPostalAddress" />
 
     <EditText
         android:id="@+id/txtSite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textUri"
-        android:hint="@string/hint_txt_site" />
+        android:hint="@string/hint_txt_site"
+        android:inputType="textUri" />
 
     <EditText
         android:id="@+id/txtTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="phone"
-        android:hint="@string/hint_txt_telefone" />
+        android:hint="@string/hint_txt_telefone"
+        android:inputType="phone" />
 
     <RatingBar
         android:id="@+id/barAvaliacao"
