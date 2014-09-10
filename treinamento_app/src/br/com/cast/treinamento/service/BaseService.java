@@ -1,5 +1,6 @@
 package br.com.cast.treinamento.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import br.com.cast.treinamento.dao.IDao;
@@ -32,5 +33,12 @@ public class BaseService<T extends IEntidade> {
 	public T recuperar(Long id) {
 		return dao.recuperar(id);
 	}
+	
+	public List<T> pesquisar(HashMap<String, String> filtro) {
+        return dao.pesquisar(filtro);
+    }
 
+	public long count(HashMap<String, String> filtro) {
+        return dao.count(filtro);
+    }
 }

@@ -32,6 +32,8 @@
     <string name="confirm_msg_delete">Confirms the exclusion?</string>
     <string name="confirm_title">Confirm</string>    
     
-    <string name="btn_pesquisar">Search</string>
+    <string name="btn_pesquisar">Search</string>    
+    
+    <string name="toast_contato_empty">No contact found.</string>
 
 </resources>

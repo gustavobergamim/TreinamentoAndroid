@@ -33,5 +33,7 @@
     <string name="confirm_title">Confirmação</string>
     
     <string name="btn_pesquisar">Pesquisar</string>
+    
+    <string name="toast_contato_empty">Nenhum contato encontrado.</string>
 
 </resources>

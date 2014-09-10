@@ -36,7 +36,11 @@ public class ContatoService extends BaseService<Contato> {
     }
 
     public List<Contato> pesquisar(Contato filtro) {
-        return getDao().pesquisar(recuperarFiltro(filtro));
+        return super.pesquisar(recuperarFiltro(filtro));
+    }
+    
+    public long count(Contato filtro) {
+        return super.count(recuperarFiltro(filtro));
     }
 
     private void validarCampos(Contato contato, ExcecaoNegocio excecao) {

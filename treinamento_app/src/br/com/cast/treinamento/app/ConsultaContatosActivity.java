@@ -8,12 +8,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import br.com.cast.treinamento.domain.Contato;
+import br.com.cast.treinamento.service.ContatoService;
 
 public class ConsultaContatosActivity extends BaseActivity {
 
     private EditText txtNome, txtTelefone;
     private Button btnPesquisar;
+    private final ContatoService service;
+
+    public ConsultaContatosActivity() {
+        service = new ContatoService(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +66,13 @@ public class ConsultaContatosActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Contato filtro = recuperarContatoFiltro();
-                navegarTelaListagem(filtro);
+                long count = service.count(filtro);
+                if (count == 0) {
+                    Toast.makeText(ConsultaContatosActivity.this, R.string.toast_contato_empty,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    navegarTelaListagem(filtro);
+                }
             }
         });
     }

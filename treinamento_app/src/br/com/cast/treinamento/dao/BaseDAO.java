@@ -223,6 +223,36 @@ public abstract class BaseDAO<T extends IEntidade> extends SQLiteOpenHelper impl
         }
         return resultado;
     }
+    
+    @Override
+    public long count(HashMap<String, String> filtro) {
+        long count = 0;
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            
+            String countQuery = "SELECT COUNT(*) FROM %s";
+            countQuery = String.format(countQuery, map.getTableName());
+            
+            String where = recuperarWhere(filtro);
+            String[] parametros = null;
+            if (where != null) {
+                parametros = recuperarParametrosWhere(filtro);
+                countQuery += " WHERE " + where;
+            }
+            Cursor cursor = db.rawQuery(countQuery, parametros);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                count = cursor.getLong(0);
+            }
+
+        } catch (SQLException ex) {
+            Log.e(TAG_ERROR, ex.getMessage());
+            throw ex;
+        } finally {
+            close();
+        }
+        return count;
+    }
 
     private String recuperarWhere(HashMap<String, String> filtro) {
         String where = "";

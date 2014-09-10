@@ -18,4 +18,6 @@ public interface IDao<T extends IEntidade> {
     T recuperar(Long id);
 
     List<T> pesquisar(HashMap<String, String> filtro);
+    
+    long count(HashMap<String, String> filtro);
 }
